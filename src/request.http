@@ -8,9 +8,25 @@ Content-Type: application/json
 
 ######
 
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "maria",
+  "password": "guess",
+  "roles": ["user","admin"]
+}
+
+######
+
 GET http://localhost:3000/auth/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiam9obiIsImlhdCI6MTc3MDk3Nzk4MiwiZXhwIjoxNzcwOTc4MDQyfQ.dXMS_t_vTwF9C4cUu4TOpo-BYFLlhBcp5zGVMAXz1sw
 
 ######
 
 GET http://localhost:3000/auth/public
+
+######
+
+GET http://localhost:3000/auth/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoibWFyaWEiLCJyb2xlcyI6WyJ1c2VyIiwiYWRtaW4iXSwiaWF0IjoxNzcxMjMzMzQ1LCJleHAiOjE3NzEyMzM0MDV9.mCtuUwBvFa8rU78MJwMKeDvVh_S9ZfK35I_tXPV3SAU

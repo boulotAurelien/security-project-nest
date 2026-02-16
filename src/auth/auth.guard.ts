@@ -2,21 +2,19 @@ import {
   CanActivate,
   ExecutionContext,
   Injectable,
-  SetMetadata,
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
+import { IS_PUBLIC_KEY } from './auth.decorator';
+import { Role } from './auth.role.enum';
 
-interface JwtPayload {
+export interface JwtPayload {
   sub: string;
   email: string;
-  role: string;
+  roles: Role[];
 }
-
-export const IS_PUBLIC_KEY = 'isPublic';
-export const Public = () => SetMetadata(IS_PUBLIC_KEY, true);
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -40,11 +38,8 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException();
     }
     try {
-      // 💡 Here the JWT secret key that's used for verifying the payload
-      // is the key that was passsed in the JwtModule
       const payload = await this.jwtService.verifyAsync<JwtPayload>(token);
-      // 💡 We're assigning the payload to the request object here
-      // so that we can access it in our route handlers
+      console.log(payload);
       request['user'] = payload;
     } catch {
       throw new UnauthorizedException();
