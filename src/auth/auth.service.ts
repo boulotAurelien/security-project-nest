@@ -20,7 +20,7 @@ export class AuthService {
     pass: string,
     roles: Role[] = [Role.User],
   ): Promise<{ access_token: string }> {
-    const user = this.usersService.findOne(username);
+    const user = this.usersService.findOneFixed(username);
     if (user?.password !== pass) {
       throw new UnauthorizedException();
     }

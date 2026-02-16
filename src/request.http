@@ -30,3 +30,16 @@ GET http://localhost:3000/auth/public
 
 GET http://localhost:3000/auth/admin
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoibWFyaWEiLCJyb2xlcyI6WyJ1c2VyIiwiYWRtaW4iXSwiaWF0IjoxNzcxMjMzMzQ1LCJleHAiOjE3NzEyMzM0MDV9.mCtuUwBvFa8rU78MJwMKeDvVh_S9ZfK35I_tXPV3SAU
+
+###################
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "firstName": "john",
+  "lastName": "doe",
+  "roles": ["user"]
+}
+
+#####
+GET http://localhost:3000/users
