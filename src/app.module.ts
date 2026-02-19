@@ -9,12 +9,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RolesModule } from './roles/roles.module';
 import { User } from './users/user.entity';
 import { RoleEntity } from './roles/role.entity';
+import { BullModule } from '@nestjs/bullmq';
+import { ProducerModule } from './producer/producer.module';
+import { WorkerModule } from './worker/worker.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
@@ -39,6 +39,17 @@ import { RoleEntity } from './roles/role.entity';
     AuthModule,
     UsersModule,
     RolesModule,
+    BullModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        connection: {
+          host: config.get<string>('REDIS_HOST'),
+          port: config.get<number>('REDIS_PORT'),
+        },
+      }),
+    }),
+    ProducerModule,
+    WorkerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

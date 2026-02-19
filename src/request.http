@@ -43,3 +43,19 @@ Content-Type: application/json
 
 #####
 GET http://localhost:3000/users
+
+##########
+POST http://localhost:3000/jobs/producer-one
+Content-Type: application/json
+
+{
+  "message": "Hello from P1"
+}
+
+#######
+POST http://localhost:3000/jobs/producer-two
+Content-Type: application/json
+
+{
+  "message": "Hello from P2"
+}
