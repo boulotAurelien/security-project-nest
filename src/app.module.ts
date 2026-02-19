@@ -12,6 +12,8 @@ import { RoleEntity } from './roles/role.entity';
 import { BullModule } from '@nestjs/bullmq';
 import { ProducerModule } from './producer/producer.module';
 import { WorkerModule } from './worker/worker.module';
+import { RedisModule } from './redis/redis.module';
+import { ExempleRedisModule } from './exemple-redis/exemple-redis.module';
 
 @Module({
   imports: [
@@ -50,6 +52,8 @@ import { WorkerModule } from './worker/worker.module';
     }),
     ProducerModule,
     WorkerModule,
+    RedisModule,
+    ExempleRedisModule,
   ],
   controllers: [AppController],
   providers: [AppService],

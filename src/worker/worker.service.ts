@@ -9,7 +9,7 @@ export interface DemoJobPayload {
 }
 
 @Injectable()
-@Processor(QUEUE_NAME!)
+@Processor(QUEUE_NAME)
 export class WorkerService extends WorkerHost {
   private readonly logger = new Logger(WorkerService.name);
 
