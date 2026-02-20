@@ -92,3 +92,8 @@ Accept: application/json
 
 #####
 GET http://localhost:3000/users/axios
+
+##### sur le nav
+GET http://localhost:3000/sse
+#####
+GET http://localhost:3000/sse/sse

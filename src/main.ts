@@ -3,7 +3,9 @@ import { AppModule } from './app.module';
 import session from 'express-session';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    forceCloseConnections: true,
+  });
 
   app.use(
     session({
@@ -13,6 +15,8 @@ async function bootstrap() {
       cookie: { maxAge: 3600000 },
     }),
   );
+
+  app.enableShutdownHooks();
 
   await app.listen(process.env.PORT ?? 3000);
 }
