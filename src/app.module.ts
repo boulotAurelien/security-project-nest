@@ -16,6 +16,7 @@ import { RedisModule } from './redis/redis.module';
 import { ExempleRedisModule } from './exemple-redis/exemple-redis.module';
 import { EventModule } from './event/event.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { FileModule } from './file/file.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
     ExempleRedisModule,
     EventEmitterModule.forRoot(),
     EventModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

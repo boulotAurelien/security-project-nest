@@ -68,3 +68,24 @@ GET http://localhost:3000/event/one
 
 ################
 GET http://localhost:3000/event/two
+
+#################
+POST http://localhost:3000/file/file/pass-validation
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="wallpaper.jpeg"
+Content-Type: image/jpeg
+
+< ./wallpaper.jpeg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+#######
+
+GET http://localhost:3000/file/download/wallpaper.jpeg
+Accept: image/jpeg
+
+#######
+
+GET http://localhost:3000/file
+Accept: application/json
