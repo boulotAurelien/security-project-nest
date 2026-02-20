@@ -14,6 +14,8 @@ import { ProducerModule } from './producer/producer.module';
 import { WorkerModule } from './worker/worker.module';
 import { RedisModule } from './redis/redis.module';
 import { ExempleRedisModule } from './exemple-redis/exemple-redis.module';
+import { EventModule } from './event/event.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -54,6 +56,8 @@ import { ExempleRedisModule } from './exemple-redis/exemple-redis.module';
     WorkerModule,
     RedisModule,
     ExempleRedisModule,
+    EventEmitterModule.forRoot(),
+    EventModule,
   ],
   controllers: [AppController],
   providers: [AppService],
