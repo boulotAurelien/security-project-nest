@@ -89,3 +89,6 @@ Accept: image/jpeg
 
 GET http://localhost:3000/file
 Accept: application/json
+
+#####
+GET http://localhost:3000/users/axios

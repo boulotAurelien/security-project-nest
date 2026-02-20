@@ -5,6 +5,9 @@ import { User } from './user.entity';
 import { RoleEntity } from 'src/roles/role.entity';
 import { Role } from 'src/auth/auth.role.enum';
 import { CreateUserDto } from './dto/user.dto';
+import { HttpService } from '@nestjs/axios';
+import { catchError, firstValueFrom } from 'rxjs';
+import { AxiosError } from 'axios';
 
 export type UserFix = { userId: number; username: string; password: string };
 
@@ -13,6 +16,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+    private readonly httpService: HttpService,
   ) {}
   private readonly users = [
     {
@@ -53,5 +57,17 @@ export class UsersService {
 
     const user: User = this.usersRepository.create({ ...dto, roles });
     return await this.usersRepository.save(user);
+  }
+
+  async findAllAxios(): Promise<User[]> {
+    const { data } = await firstValueFrom(
+      this.httpService.get<User[]>('http://localhost:3000/users').pipe(
+        catchError((error: AxiosError) => {
+          console.log(error?.response?.data || 'generic error');
+          throw new Error('An error happened!');
+        }),
+      ),
+    );
+    return data;
   }
 }

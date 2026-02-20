@@ -15,4 +15,9 @@ export class UsersController {
   getAll() {
     return this.usersService.findAll();
   }
+
+  @Get('axios')
+  getAllAxios() {
+    return this.usersService.findAllAxios();
+  }
 }
